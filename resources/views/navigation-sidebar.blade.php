@@ -5,28 +5,25 @@
                 <i class="bi bi-pin-map nav-logo-icon"></i>
                 <span class="nav-logo-name">SGE</span>
             </a>
-            <div class="nav-list"> 
-                
-                <a href="/" class="nav-link">
-                    <i class='bi bi-speedometer nav-icon'></i> 
-                    <span class="nav-name">Gerencia</span> 
-                </a>
+            
+            <x-jet-nav-link href="{{ route('profile.show') }}" :active="request()->routeIs('profile.show')">
+                <i class='bi bi-percent nav-icon'></i> 
+                Profile
+            </x-jet-nav-link>
 
-                <a href="/" class="nav-link"> 
+            @can('task_access')
+                <x-jet-nav-link href="{{ route('tasks.index') }}" :active="request()->routeIs('tasks.*')">
                     <i class='bi bi-percent nav-icon'></i> 
-                    <span class="nav-name">Solicitar</span> 
-                </a>
+                    Tasks
+                </x-jet-nav-link>
+            @endcan
 
-                @can('task_access')
-                    <div class="nav-link">
-                        <i class='bi bi-percent nav-icon'></i> 
-                        <x-jet-nav-link href="{{ route('tasks.index') }}" :active="request()->routeIs('tasks.*')">
-                            Tasks
-                        </x-jet-nav-link>
-                    </div>
-                @endcan
-
-            </div>
+            @can('user_access')
+                <x-jet-nav-link href="{{ route('users.index') }}" :active="request()->routeIs('users.*')">
+                    <i class='bi bi-percent nav-icon'></i> 
+                    Users
+                </x-jet-nav-link>
+            @endcan
         </div> 
 
         <form method="POST" action="{{ route('logout') }}">
