@@ -30,10 +30,10 @@
             </div>
 
             <div class="mt-4">
-                <label for="roles" >Roles</label>
+                <label for="roles" >Esta conta será destinada para?</label>
                 <select name="roles" id="roles" class="form-select block w-full mt-1">
-                    <option value="1">Admin</option>
-                    <option value="2">User</option>
+                    <option value="1">Empresas</option>
+                    <option value="2">Pessoas</option>
                 </select>
             </div>
 
