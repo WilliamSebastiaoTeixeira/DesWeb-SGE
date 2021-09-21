@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
+use phpDocumentor\Reflection\Types\This;
 
 class User extends Authenticatable
 {
@@ -67,5 +68,13 @@ class User extends Authenticatable
     public function roles()
     {
         return $this->belongsToMany(Role::class);
+    }
+
+    public function userType(){
+        if($this->roles == 1){
+            return $this->hasMany(Empresa::class);
+        }else if($this->roles == 2){
+            return $this->hasOne(Pessoa::class); 
+        }
     }
 }
