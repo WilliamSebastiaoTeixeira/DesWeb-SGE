@@ -7,20 +7,20 @@
             </a>
             
             <x-jet-nav-link href="{{ route('profile.show') }}" :active="request()->routeIs('profile.show')">
-                <i class='bi bi-percent nav-icon'></i> 
+                <i class="bi bi-person-circle"></i> 
                 Profile
             </x-jet-nav-link>
 
             @can('task_access')
                 <x-jet-nav-link href="{{ route('tasks.index') }}" :active="request()->routeIs('tasks.*')">
-                    <i class='bi bi-percent nav-icon'></i> 
+                    <i class="bi bi-list-task"></i> 
                     Tasks
                 </x-jet-nav-link>
             @endcan
 
             @can('user_access')
                 <x-jet-nav-link href="{{ route('users.index') }}" :active="request()->routeIs('users.*')">
-                    <i class='bi bi-percent nav-icon'></i> 
+                    <i class="bi bi-person-lines-fill"></i> 
                     Users
                 </x-jet-nav-link>
             @endcan
