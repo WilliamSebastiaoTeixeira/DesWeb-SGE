@@ -11,6 +11,7 @@
                 Profile
             </x-jet-nav-link>
 
+            {{--
             @can('empresa_access')
                 <x-jet-nav-link href="{{ route('tasks.index') }}" :active="request()->routeIs('tasks.*')">
                     <i class="bi bi-list-task"></i> 
@@ -22,6 +23,14 @@
                 <x-jet-nav-link href="{{ route('users.index') }}" :active="request()->routeIs('users.*')">
                     <i class="bi bi-person-lines-fill"></i> 
                     Users
+                </x-jet-nav-link>
+            @endcan
+            --}}
+
+            @can('pessoa_access')
+                <x-jet-nav-link href="{{ route('carro')}}" :active="request()->routeIs('carro')">
+                    <i class="bi bi-truck"></i>
+                    Carros
                 </x-jet-nav-link>
             @endcan
         </div> 

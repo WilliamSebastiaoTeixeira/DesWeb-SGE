@@ -1,9 +1,9 @@
-@import url(https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap);
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap");
 
 /*variáreis*/
 
 :root {
-    --header-height: 0;
+    --header-height: 2rem;
     --nav-width: 68px;
     --first-color: #000000;
     --second-color: #707070;
@@ -41,8 +41,6 @@ a {
     text-decoration: none
 }
 
-
-/*
 .header {
     width: 100%;
     height: var(--header-height);
@@ -56,17 +54,13 @@ a {
     z-index: var(--z-fixed);
     transition: .5s
 }
-*/
 
-
-/*
 .header-toggle {
     padding-left: 1rem;
     color: var(--third-color);
     font-size: 1.25rem;
     cursor: pointer;
 }
-*/
 
 .l-navbar {
     position: fixed;
@@ -75,6 +69,7 @@ a {
     width: var(--nav-width);
     height: 100vh;
     background-color: var(--first-color);
+    padding: .5rem 1rem 0 0;
     z-index: var(--z-fixed);
     transition: .5s;
 }
@@ -236,19 +231,17 @@ a {
         margin: var(--header-height) 0 0 0;
         padding-left: var(--nav-width)
     }
-    /*
     .header {
         height: calc(var(--header-height));
         padding: 0 2rem 0 calc(var(--nav-width));
         transition: .5s;
     }
-    */
     .l-navbar {
         left: 0;
         padding: 1rem 1rem 0 0;
     }
     .show {
-        width: calc(var(--nav-width) + 70px);
+        width: calc(var(--nav-width) + 100px);
         transition: .5s;
     }
     .body-pd {

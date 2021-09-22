@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\TasksController;
+use App\Http\Livewire\CarroController; 
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +25,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 })->name('dashboard');
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::resource('tasks', TasksController::class);
-    Route::resource('users', UsersController::class);
+    Route::resource('/tasks', TasksController::class);
+    Route::resource('/users', UsersController::class);
+    Route::get('/carro', CarroController::class)->name('carro');
 });

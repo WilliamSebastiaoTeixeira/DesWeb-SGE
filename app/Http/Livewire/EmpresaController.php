@@ -19,8 +19,9 @@ class EmpresaController extends Component
     public function render()
     {
         abort_if(Gate::denies('empresa_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
- 
+
         $user = ''; 
+
         if(Empresa::where('user_id','=' ,auth()->user()->id)->exists()){
             $user = Empresa::where('user_id','=' ,auth()->user()->id)->get();
             $this->cnpj = $user[0]->cnpj; 
