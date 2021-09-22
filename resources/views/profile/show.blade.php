@@ -13,8 +13,14 @@
                 <x-jet-section-border />
             @endif
 
+
             <div class="mt-10 sm:mt-0">
-                @livewire('pessoa-controller')
+                @can('pessoa_access')
+                    @livewire('pessoa-controller')
+                @endcan
+                @can('empresa_access')
+                    aaaaaaaaaaaaaaa
+                @endcan
             </div>
             
             <x-jet-section-border />

@@ -13,7 +13,6 @@ class PermissionRoleTableSeeder extends Seeder
         $permissions = Permission::all(); 
 
         Role::findOrFail(1)->permissions()->sync($permissions->where('id', 1));
-        
         Role::findOrFail(2)->permissions()->sync($permissions->where('id', 2));
     }
 }

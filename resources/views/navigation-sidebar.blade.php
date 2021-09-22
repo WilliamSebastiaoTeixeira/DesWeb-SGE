@@ -11,14 +11,14 @@
                 Profile
             </x-jet-nav-link>
 
-            @can('task_access')
+            @can('empresa_access')
                 <x-jet-nav-link href="{{ route('tasks.index') }}" :active="request()->routeIs('tasks.*')">
                     <i class="bi bi-list-task"></i> 
                     Tasks
                 </x-jet-nav-link>
             @endcan
 
-            @can('user_access')
+            @can('pessoa_access')
                 <x-jet-nav-link href="{{ route('users.index') }}" :active="request()->routeIs('users.*')">
                     <i class="bi bi-person-lines-fill"></i> 
                     Users

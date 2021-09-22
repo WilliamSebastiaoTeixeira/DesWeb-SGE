@@ -5,6 +5,8 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use App\Models\Pessoa; 
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Gate;
+use Symfony\Component\HttpFoundation\Response;
 
 class PessoaController extends Component
 {
@@ -15,7 +17,9 @@ class PessoaController extends Component
     ]; 
 
     public function render()
-    { 
+    {
+        abort_if(Gate::denies('pessoa_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+ 
         $user = ''; 
         if(Pessoa::where('user_id','=' ,auth()->user()->id)->exists()){
             $user = Pessoa::where('user_id','=' ,auth()->user()->id)->get();
@@ -26,6 +30,8 @@ class PessoaController extends Component
 
     public function update()
     {
+        abort_if(Gate::denies('pessoa_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        
         $this->validate();
 
         Session::flash('message','Salvo!!'); 
