@@ -19,7 +19,7 @@
                     @livewire('pessoa-controller')
                 @endcan
                 @can('empresa_access')
-                    aaaaaaaaaaaaaaa
+                    @livewire('empresa-controller')
                 @endcan
             </div>
             
