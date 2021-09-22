@@ -71,9 +71,9 @@ class User extends Authenticatable
     }
 
     public function userType(){
-        if($this->roles == 1){
+        if($this->roles[0]->id == 1){
             return $this->hasOne(Empresa::class);
-        }else if($this->roles == 2){
+        }else if($this->roles[0]->id == 2){
             return $this->hasOne(Pessoa::class); 
         }
     }

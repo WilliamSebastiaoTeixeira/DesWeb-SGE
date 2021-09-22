@@ -1,28 +1,48 @@
-<x-jet-form-section submit="PessoaController">
-    <x-slot name="title">
-        {{ __('Informações Adicionais') }}
-    </x-slot>
+<div class="container-fluid">
+    <div class="row">
+       <div class="col pt-2">
+          <div class="card">
+             <div class="card-header">
+                CPF
+             </div>
+             <div class="card-body">
+                <form method="post" wire:submit.prevent="update">
+                   <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-floating">
+                                <input type="text" class="form-control  @error('cpf') is-invalid @enderror" placeholder="cpf" id="cpf" name="cpf" wire:model.defer="cpf">
+                                <label for="cpf">CPF</label>
+                                @error('cpf') 
+                                    <div class="invalid-feedback">
+                                        {{$message}}
+                                    </div>
+                                @enderror
+                            </div>
+                        </div>
+                   </div>
+                    <div class="row pt-2 d-flex align-items-center">
+                        <div class="col text-center">
+                            <button type="submit" class="btn btn-outline-secondary mb-2">
+                                Salvar
+                            </button>
+                        </div>
+                    </div>
+                    @if(Session::has('message'))
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            {{Session::get('message') }}
+                        </div>
 
-    <x-slot name="description">
-        {{ __('Altere suas informações') }}
-    </x-slot>
-
-    <x-slot name="form">
-        <div  wire:poll.visible class="col-span-6 sm:col-span-4">
-            <x-jet-label for="cpf" value="{{ __('Cpf') }}" />
-            <x-jet-input id="cpf" type="text" class="mt-1 block w-full" wire:model.defer="update" value="{{$user->cpf}}"/>
-            <input type="text" name="" id="" value="{{$user->cpf}}">
-            <x-jet-input-error for="cpf" class="mt-2" />
-        </div>
-    </x-slot>
-
-    <x-slot name="actions">
-        <x-jet-action-message class="mr-3" on="saved">
-            {{ __('Salvo.') }}
-        </x-jet-action-message>
-
-        <x-jet-button wire:loading.attr="disabled" wire:target="photo">
-            {{ __('Salvar') }}
-        </x-jet-button>
-    </x-slot>
-</x-jet-form-section>
+                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                            <strong>Holy guacamole!</strong> You should check in on some of those fields below.
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                    @endif  
+                </form>
+             </div>
+          </div>
+       </div>
+    </div>
+ </div>

@@ -11,11 +11,6 @@ class Pessoa extends Model
 
     protected $fillable = ['cpf']; 
 
-    public function __construct(array $attributes = [])
-    {
-        parent::__construct($attributes);
-    }
-
     public function user(){
         $this->belongsTo(User::class);
     }
