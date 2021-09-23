@@ -31,7 +31,7 @@
             @extends('navigation-sidebar')
             
             <!-- Page Content -->
-            <main>
+            <main id="main">
                 {{ $slot }}
             </main>
         </div>
