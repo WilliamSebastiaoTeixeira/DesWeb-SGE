@@ -5,10 +5,10 @@
                 <i class="bi bi-pin-map nav-logo-icon"></i>
                 <span class="nav-logo-name">SGE</span>
             </a>
-            
-            <x-jet-nav-link href="{{ route('profile.show') }}" :active="request()->routeIs('profile.show')">
-                <i class="bi bi-person-circle"></i> 
-                Profile
+
+            <x-jet-nav-link href="{{ route('mapa.index') }}" :active="request()->routeIs('mapa.*')">
+            <i class="bi bi-map"></i>
+                Mapa
             </x-jet-nav-link>
 
             @can('empresa_access')
@@ -18,28 +18,17 @@
                 </x-jet-nav-link>
             @endcan
 
-            {{--
-            @can('empresa_access')
-                <x-jet-nav-link href="{{ route('tasks.index') }}" :active="request()->routeIs('tasks.*')">
-                    <i class="bi bi-list-task"></i> 
-                    Tasks
-                </x-jet-nav-link>
-            @endcan
-
-            @can('pessoa_access')
-                <x-jet-nav-link href="{{ route('users.index') }}" :active="request()->routeIs('users.*')">
-                    <i class="bi bi-person-lines-fill"></i> 
-                    Users
-                </x-jet-nav-link>
-            @endcan
-            --}}
-
             @can('pessoa_access')
                 <x-jet-nav-link href="{{ route('carro')}}" :active="request()->routeIs('carro')">
                     <i class="bi bi-truck"></i>
                     Carros
                 </x-jet-nav-link>
             @endcan
+
+            <x-jet-nav-link href="{{ route('profile.show') }}" :active="request()->routeIs('profile.show')">
+                <i class="bi bi-person-circle"></i> 
+                Perfil
+            </x-jet-nav-link>
         </div> 
 
         <form method="POST" action="{{ route('logout') }}">
