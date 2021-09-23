@@ -1,4 +1,15 @@
 <div class="container-fluid">
+
+    <div>
+        @if(Session::has('error'))
+            {{Session::get('error') }} <br>
+        @endif
+    
+        @if(Session::has('success'))
+            {{Session::get('success')}} <br>
+        @endif
+    </div>
+    
     <div class="row">
        <div class="col pt-2">
           <div class="card">
@@ -27,9 +38,6 @@
                             </button>
                         </div>
                     </div>
-                    @if(Session::has('message'))
-                        {{Session::get('message') }}
-                    @endif  
                 </form>
              </div>
           </div>

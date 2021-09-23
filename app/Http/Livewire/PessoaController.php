@@ -21,9 +21,13 @@ class PessoaController extends Component
         abort_if(Gate::denies('pessoa_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
  
         $user = ''; 
-        if(Pessoa::where('user_id','=' ,auth()->user()->id)->exists()){
-            $user = Pessoa::where('user_id','=' ,auth()->user()->id)->get();
-            $this->cpf = $user[0]->cpf; 
+        try{
+            if(Pessoa::where('user_id','=' ,auth()->user()->id)->exists()){
+                $user = Pessoa::where('user_id','=' ,auth()->user()->id)->get();
+                $this->cpf = $user[0]->cpf; 
+            }
+        }catch(\Exception $e){
+            session()->flash('error','Ops, ocorreu algum erro!');
         }
         return view('livewire.pessoa-controller', ['user' => $user]);
     }
@@ -34,16 +38,19 @@ class PessoaController extends Component
         
         $this->validate();
 
-        Session::flash('message','Salvo!!'); 
-
-        if(Pessoa::where('user_id','=' ,auth()->user()->id)->exists()){
-            auth()->user()->userType()->update([
-                'cpf' => $this->cpf, 
-            ]);
-        }else{
-            auth()->user()->userType()->create([
-                'cpf' => $this->cpf, 
-            ]); 
+        try{
+            if(Pessoa::where('user_id','=' ,auth()->user()->id)->exists()){
+                auth()->user()->userType()->update([
+                    'cpf' => $this->cpf, 
+                ]);
+            }else{
+                auth()->user()->userType()->create([
+                    'cpf' => $this->cpf, 
+                ]); 
+            }
+            Session::flash('success','Salvo!!'); 
+        }catch(\Exception $e){
+            session()->flash('error','Ops, ocorreu algum erro!');
         }
     }
 }

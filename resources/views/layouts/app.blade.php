@@ -34,6 +34,7 @@
             <main id="main">
                 {{ $slot }}
             </main>
+
         </div>
 
         @stack('modals')

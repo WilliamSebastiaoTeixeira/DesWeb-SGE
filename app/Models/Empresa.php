@@ -14,4 +14,8 @@ class Empresa extends Model
     public function user(){
         $this->belongsTo(User::class);
     }
+
+    public function estacionamento(){
+        return $this->hasMany(Estacionamento::class); 
+    }
 }

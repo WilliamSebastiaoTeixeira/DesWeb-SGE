@@ -21,10 +21,13 @@ class EmpresaController extends Component
         abort_if(Gate::denies('empresa_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $user = ''; 
-
-        if(Empresa::where('user_id','=' ,auth()->user()->id)->exists()){
-            $user = Empresa::where('user_id','=' ,auth()->user()->id)->get();
-            $this->cnpj = $user[0]->cnpj; 
+        try{
+            if(Empresa::where('user_id','=' ,auth()->user()->id)->exists()){
+                $user = Empresa::where('user_id','=' ,auth()->user()->id)->get();
+                $this->cnpj = $user[0]->cnpj; 
+            }    
+        }catch(\Exception $e){
+            session()->flash('error','Ops, ocorreu algum erro!');
         }
         return view('livewire.empresa-controller', ['user' => $user]);
     }
@@ -35,16 +38,19 @@ class EmpresaController extends Component
         
         $this->validate();
 
-        Session::flash('message','Salvo!!'); 
-
-        if(Empresa::where('user_id','=' ,auth()->user()->id)->exists()){
-            auth()->user()->userType()->update([
-                'cnpj' => $this->cnpj, 
-            ]);
-        }else{
-            auth()->user()->userType()->create([
-                'cnpj' => $this->cnpj, 
-            ]); 
+        try{
+            if(Empresa::where('user_id','=' ,auth()->user()->id)->exists()){
+                auth()->user()->userType()->update([
+                    'cnpj' => $this->cnpj, 
+                ]);
+            }else{
+                auth()->user()->userType()->create([
+                    'cnpj' => $this->cnpj, 
+                ]); 
+            }
+            Session::flash('success','Salvo!!'); 
+        }catch(\Exception $e){
+            session()->flash('error','Ops, ocorreu algum erro!');
         }
     }
 }

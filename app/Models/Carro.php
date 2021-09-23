@@ -9,9 +9,9 @@ class Carro extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'placa', 'modelo', 'ano']; 
+    protected $fillable = ['pessoa_id', 'placa', 'modelo', 'ano']; 
 
-    public function user(){
-        return $this->belongsTo(User::class); 
+    public function pessoa(){
+        return $this->belongsTo(Pessoa::class); 
     }
 }

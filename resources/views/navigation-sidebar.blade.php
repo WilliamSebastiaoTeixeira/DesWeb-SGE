@@ -11,6 +11,13 @@
                 Profile
             </x-jet-nav-link>
 
+            @can('empresa_access')
+                <x-jet-nav-link href="{{ route('estacionamento') }}" :active="request()->routeIs('estacionamento.*')">
+                    <i class="bi bi-building"></i>
+                    Estacionamento
+                </x-jet-nav-link>
+            @endcan
+
             {{--
             @can('empresa_access')
                 <x-jet-nav-link href="{{ route('tasks.index') }}" :active="request()->routeIs('tasks.*')">
