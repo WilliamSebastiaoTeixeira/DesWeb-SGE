@@ -14,7 +14,7 @@
                 center: position,
             @endif
             zoom: {!! $options['zoom'] !!},
-            mapTypeId: google.maps.MapTypeId.{!! $options['type'] !!},
+            //mapTypeId: google.maps.MapTypeId.{!! $options['type'] !!},
             disableDefaultUI: @if (!$options['ui']) true @else false @endif,
             scrollwheel: @if ($options['scrollWheelZoom']) true @else false @endif,
             zoomControl: @if ($options['zoomControl']) true @else false @endif,
@@ -79,9 +79,23 @@
         @endif
 
         @if (isset($options['eventAfterLoad']))
+
+            var latitudeMapa = document.getElementById("latitude"); 
+            var longitudeMapa = document.getElementById("longitude"); 
+
+            google.maps.event.addListener(map_{!! $id !!}, 'click', function( event ){
+                latitudeMapa.value = event.latLng.lat();
+                longitudeMapa.value = event.latLng.lng();
+
+                latitudeMapa.dispatchEvent(new KeyboardEvent('keyup')); 
+                longitudeMapa.dispatchEvent(new KeyboardEvent('keyup')); 
+            });
+
+            /*
             google.maps.event.addListenerOnce(map_{!! $id !!}, "tilesloaded", function() {
                 {!! $options['eventAfterLoad'] !!}
             });
+            */
         @endif
 
         @if ($options['cluster'])

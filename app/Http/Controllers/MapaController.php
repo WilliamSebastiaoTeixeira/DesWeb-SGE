@@ -11,7 +11,7 @@ class MapaController extends Controller
 {
     public function index()
     {
-        Mapper::map(0,0, ['zoom' => 18]);
+        Mapper::map(-28.936090514091237, -49.47023485593878, ['zoom' => 18]);
 
         try{
             $user = User::find(auth()->user()->id);
@@ -19,11 +19,10 @@ class MapaController extends Controller
                 //Retorna só os próprios estacionamentos para usuarios do tipo Empresa
                 foreach(Estacionamento::where('empresa_id','=', $user->userType->id)->get() as $estacionamento){
                     Mapper::informationWindow($estacionamento->latitude,$estacionamento->longitude, $estacionamento->fantasia);
-
                 }
             }else if($user->roles[0]->title === 'Pessoa'){
                 foreach(Estacionamento::get() as $estacionamento){
-                    Mapper::informationWindow($estacionamento->latitude,$estacionamento->longitude, $estacionamento->fantasia);
+                    Mapper::informationWindow($estacionamento->latitude,$estacionamento->longitude, $estacionamento->fantasia, ['markers' => ['animation' => 'DROP']]);
                 }
             }
         }catch(\Exception $e){
@@ -33,7 +32,6 @@ class MapaController extends Controller
                 session()->flash('error','Ops, ocorreu algum erro!!');
             }
         }
-
         return view('mapa.index'); 
     }
 }

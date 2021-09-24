@@ -10,6 +10,8 @@ use Livewire\Component;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Gate;
 use Symfony\Component\HttpFoundation\Response;
+use Mapper; 
+
 
 use function PHPUnit\Framework\isEmpty;
 
@@ -29,9 +31,11 @@ class EstacionamentoController extends Component
     {
         abort_if(Gate::denies('empresa_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         
+        Mapper::map(-28.936090514091237, -49.47023485593878, ['zoom' => 15 , 'eventAfterLoad' => '']);
+
         $estacionamento = []; 
 
-        try{
+        try{ 
             $empresa = Empresa::where('user_id','=' ,auth()->user()->id)->get();
             $estacionamento = Estacionamento::where('empresa_id', '=', $empresa[0]->id)->latest()->get();
         }

@@ -20,7 +20,7 @@
                 <div class="card-body">
                     <form method="post" wire:submit.prevent="criar">
                         <div class="row">
-                            <div class="col-md-4">
+                            <div class="col-md-6 pb-2">
                                 <div class="form-floating">
                                     <input type="text" class="form-control @error('fantasia') is-invalid @enderror" placeholder="fantasia" id="fantasia" name="fantasia" wire:model="fantasia">
                                     <label for="fantasia">Fantasia</label>
@@ -31,26 +31,42 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="col-md-4">
-                                <div class="form-floating">
-                                    <input type="text" class="form-control @error('latitude') is-invalid @enderror" id="latitude" name="latitude" wire:model="latitude" placeholder="latitude">
-                                    <label for="latitude">Latitude</label>
-                                    @error('latitude') 
-                                        <div class="invalid-feedback">
-                                            {{$message}}
+                            <div class="col-md-6">
+                                <div class="card">
+                                    <div class="card-header">
+                                        Selecione o local no mapa ou coloque as cordenadas
+                                    </div>
+                                    <div class="card-body ">
+                                        <div class="row">
+                                            <div class="col-md-6 pb-2">
+                                                <div class="form-floating">
+                                                    <input type="text" class="form-control @error('latitude') is-invalid @enderror" id="latitude" name="latitude" wire:model="latitude" placeholder="latitude">
+                                                    <label for="latitude">Latitude</label>
+                                                    @error('latitude') 
+                                                        <div class="invalid-feedback">
+                                                            {{$message}}
+                                                        </div>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 pb-2 ">
+                                                <div class="form-floating">
+                                                    <input type="text" class="form-control @error('longitude') is-invalid @enderror" id="longitude" name="longitude" wire:model="longitude" placeholder="longitude">
+                                                    <label for="longitude">longitude</label>
+                                                    @error('longitude') 
+                                                        <div class="invalid-feedback">
+                                                            {{$message}}
+                                                        </div>
+                                                    @enderror
+                                                </div>
+                                            </div>
                                         </div>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-floating">
-                                    <input type="text" class="form-control @error('longitude') is-invalid @enderror" id="longitude" name="longitude" wire:model="longitude" placeholder="longitude">
-                                    <label for="longitude">longitude</label>
-                                    @error('longitude') 
-                                        <div class="invalid-feedback">
-                                            {{$message}}
+                                        <div wire:ignore class="row pt-2 d-flex align-items-center">
+                                            <div id="mapa" class="mapa" style="height: 400px"> 
+                                                {!!Mapper::render()!!}
+                                            </div>
                                         </div>
-                                    @enderror
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -96,6 +112,18 @@
           </div>
        </div>
     </div>
- </div>
 
- @livewireScripts
+    <script>
+        document.addEventListener('livewire:load', function () {
+            var latitude = document.getElementById("latitude"); 
+            latitude.addEventListener("keyup", ()=> {
+                console.log(latitude.value);
+                @this.set('latitude', latitude.value);
+            });
+            var longitude = document.getElementById("longitude"); 
+            longitude.addEventListener("keyup", ()=> {
+                @this.set('longitude', longitude.value);
+            });
+        }); 
+    </script>
+ </div>
