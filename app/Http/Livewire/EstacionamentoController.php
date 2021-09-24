@@ -76,8 +76,14 @@ class EstacionamentoController extends Component
 
     public function destroy($id){
         try{
-            Estacionamento::find($id)->delete();
-            session()->flash('success',"Estacionamento deletado com sucesso!!");
+            $estacionamento = Estacionamento::find($id);
+            
+            if((Empresa::where('user_id','=' ,auth()->user()->id)->get())[0]->id === $estacionamento->empresa_id){
+                $estacionamento->delete(); 
+                session()->flash('success',"Estacionamento deletado com sucesso!!");
+            }else{
+                session()->flash('error',"Algo deu errado ao tentar deletar!!");
+            }
         }catch(\Exception $e){
             session()->flash('error',"Algo deu errado ao tentar deletar!!");
         }

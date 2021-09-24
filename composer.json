@@ -1,10 +1,12 @@
 {
     "name": "laravel/laravel",
     "type": "project",
-    "description": "The Laravel Framework.",
+    "description": "SGE - Sistema de Gerenciamento de Estacionamento",
     "keywords": [
         "framework",
-        "laravel"
+        "laravel",
+        "estacionamento",
+        "mapa"
     ],
     "license": "MIT",
     "require": {

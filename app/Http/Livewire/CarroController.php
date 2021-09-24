@@ -71,8 +71,13 @@ class CarroController extends Component
 
     public function destroy($id){
         try{
-            Carro::find($id)->delete();
-            session()->flash('success',"Carro deletado com sucesso!!");
+            $carro = Carro::find($id);
+            if((Pessoa::where('user_id','=' ,auth()->user()->id)->get())[0]->id === $carro->pessoa_id){
+                $carro->delete(); 
+                session()->flash('success',"Carro deletado com sucesso!!");
+            }else{
+                session()->flash('error',"Algo deu errado ao tentar deletar!!");
+            }
         }catch(\Exception $e){
             session()->flash('error',"Algo deu errado ao tentar deletar!!");
         }
