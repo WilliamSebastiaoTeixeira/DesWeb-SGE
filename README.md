@@ -21,6 +21,7 @@
     Abra um terminal no diretório principal e rode os comandos: 
     - $composer install
     - $php artisan key:generate
+    - $php artisan migrate:fresh --seed
     - $npm install && npm run dev
     - php artisan serve
 
