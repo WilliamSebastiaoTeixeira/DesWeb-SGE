@@ -30,6 +30,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('/tasks', TasksController::class);
     Route::resource('/users', UsersController::class);
     Route::resource('/mapa', MapaController::class);
-    Route::get('/carro', CarroController::class)->name('carro');
     Route::get('/estacionamento', EstacionamentoController::class)->name('estacionamento');
+    Route::get('/carro', CarroController::class)->name('carro');
 });

@@ -27,16 +27,11 @@
     </head>
     <body class="body-pd">
         <div class="min-h-screen bg-gray-100">
-
             @extends('navigation-sidebar')
-            
-            <!-- Page Content -->
             <main id="main">
                 {{ $slot }}
             </main>
-
         </div>
-
         @stack('modals')
         @livewireScripts
     </body>

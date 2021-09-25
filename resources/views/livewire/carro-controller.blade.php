@@ -1,23 +1,13 @@
 
 <div class="container-fluid">
-    
-    <div>
-        @if(Session::has('error'))
-            {{Session::get('error') }} <br>
-        @endif
-    
-        @if(Session::has('success'))
-            {{Session::get('success')}} <br>
-        @endif
-    </div>  
-    
     <div class="row">
         <div class="col pt-2">
             <div class="card">
                 <div class="card-header">
-                    Cadastrar Veículos
-                </div>
-                <div class="card-body">
+                    <button id="abrirCriar" class="pr-3"><i class="bi bi-arrow-down"></i></button>
+                        Cadastrar Carros
+                    </div>
+                <div wire:ignore id="bodyCriar" class="card-body hidden">
                     <form method="post" wire:submit.prevent="criar">
                         <div class="row">
                             <div class="col-md-4">
@@ -96,4 +86,22 @@
           </div>
        </div>
     </div>
+
+    {{--Mensagens--}}
+    @include('layouts.components.alerts')
+    
+    <script>
+        document.addEventListener('livewire:load', function () {
+            document.getElementById("abrirCriar").addEventListener("click",()=>{
+                if(document.getElementById("abrirCriar").childNodes[0].classList[1] === "bi-arrow-down"){
+                    document.getElementById("abrirCriar").childNodes[0].classList.toggle("bi-arrow-down");
+                    document.getElementById("abrirCriar").childNodes[0].classList.toggle("bi-arrow-up"); 
+                }else{
+                    document.getElementById("abrirCriar").childNodes[0].classList.toggle("bi-arrow-up");
+                    document.getElementById("abrirCriar").childNodes[0].classList.toggle("bi-arrow-down"); 
+                }
+                document.getElementById("bodyCriar").classList.toggle("hidden"); 
+            })
+        });
+    </script>
  </div>
