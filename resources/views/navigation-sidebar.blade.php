@@ -2,7 +2,7 @@
     <nav class="nav">
         <div>
             <a href="{{route('dashboard')}}" class="nav-logo">
-                <i class="bi bi-pin-map nav-logo-icon"></i>
+                <i class="bi bi-pin-map nav-logo-icon pl-5"></i>
                 <span class="nav-logo-name">SGE</span>
             </a>
 
@@ -12,9 +12,11 @@
             </x-jet-nav-link>
 
             @can('empresa_access')
-                <x-jet-nav-link href="{{ route('estacionamento') }}" :active="request()->routeIs('estacionamento.*')">
+                <x-jet-nav-link href="{{ route('estacionamento') }}" :active="request()->routeIs('estacionamento')">
                     <i class="bi bi-building"></i>
-                    Estacionamento
+                    <div class="text-xs">
+                        Estacionamento
+                    </div>
                 </x-jet-nav-link>
             @endcan
 
@@ -34,7 +36,7 @@
         <form method="POST" action="{{ route('logout') }}">
             @csrf
             <a href="{{ route('logout') }}" class="nav-link" onclick="event.preventDefault(); this.closest('form').submit();"> 
-                <i class='bi bi-door-open nav-icon'></i> 
+                <i class='bi bi-door-open nav-icon pl-5'></i> 
                 <span class="nav-name">Sair</span>
             </a>
         </form>
