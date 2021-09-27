@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Gate;
 use Symfony\Component\HttpFoundation\Response;
 use Mapper; 
+use Illuminate\Http\Request;
 
 
 use function PHPUnit\Framework\isEmpty;
@@ -30,10 +31,10 @@ class EstacionamentoController extends Component
     public function render()
     {
         abort_if(Gate::denies('empresa_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-        
-        Mapper::map(-28.936090514091237, -49.47023485593878, ['zoom' => 15 , 'eventAfterLoad' => '']);
 
-        $estacionamento = []; 
+        $estacionamento = [];
+
+        Mapper::map(-28.936091051367864, -49.48315979766263, ['zoom' => 15 , 'eventAfterLoad' => '']);
 
         try{ 
             $empresa = Empresa::where('user_id','=' ,auth()->user()->id)->get();
@@ -79,6 +80,8 @@ class EstacionamentoController extends Component
     }
 
     public function destroy($id){
+        abort_if(Gate::denies('empresa_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
         try{
             $estacionamento = Estacionamento::find($id);
             
@@ -87,6 +90,24 @@ class EstacionamentoController extends Component
                 session()->flash('success',"Estacionamento deletado com sucesso!!");
             }else{
                 session()->flash('error',"Algo deu errado ao tentar deletar!!");
+            }
+        }catch(\Exception $e){
+            session()->flash('error',"Algo deu errado ao tentar deletar!!");
+        }
+    }
+
+    public function update($id){
+        abort_if(Gate::denies('empresa_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+        try{
+            $estacionamento = Estacionamento::find($id);
+
+            if((Empresa::where('user_id','=' ,auth()->user()->id)->get())[0]->id === $estacionamento->empresa_id){
+                //dd($estacionamento); 
+                //$estacionamento->delete(); 
+                session()->flash('success',"Estacionamento alterado com sucesso!!");
+            }else{
+                session()->flash('error',"Algo deu errado ao tentar alterar!!");
             }
         }catch(\Exception $e){
             session()->flash('error',"Algo deu errado ao tentar deletar!!");

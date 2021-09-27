@@ -13,6 +13,7 @@
 
 @endif
 
+
 @if ($options['locate'] && $options['marker'])
     if (typeof navigator !== 'undefined' && navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function (position) {

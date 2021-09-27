@@ -1,7 +1,7 @@
 @if(Session::has('error'))
 <div id="erroAlerta" class="position-fixed top-0 end-0 pt-3 pr-3" style="z-index: 9999;">
     <div wire:ignore class="flex justify-between text-orange-200 shadow-inner border-2 border-black p-2 bg-orange-600">
-        <p class="self-center">{{Session::get('erroAlertar')}}</p>
+        <p class="self-center">{{Session::get('error')}}</p>
         <button class="pl-1" id="alertclose">&times;</button>
     </div>
     <script>

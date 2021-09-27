@@ -2,7 +2,7 @@
     <nav class="nav">
         <div>
             <a href="{{route('dashboard')}}" class="nav-logo">
-                <i class="bi bi-pin-map nav-logo-icon pl-5"></i>
+                <i class="bi bi-pin-map nav-logo-icon"></i>
                 <span class="nav-logo-name">SGE</span>
             </a>
 
@@ -36,7 +36,7 @@
         <form method="POST" action="{{ route('logout') }}">
             @csrf
             <a href="{{ route('logout') }}" class="nav-link" onclick="event.preventDefault(); this.closest('form').submit();"> 
-                <i class='bi bi-door-open nav-icon pl-5'></i> 
+                <i class='bi bi-door-open nav-icon-logout'></i> 
                 <span class="nav-name">Sair</span>
             </a>
         </form>

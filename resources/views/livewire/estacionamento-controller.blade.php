@@ -92,7 +92,8 @@
                             <td>{{$estacionamento->latitude}}</td>
                             <td>{{$estacionamento->longitude}}</td>
                             <td>
-                                <button wire:click="destroy({{ $estacionamento->id }})"class="btn btn-outline-danger">Deletar</button>
+                                <button wire:click="update({{ $estacionamento->id }})"class="btn btn-outline-primary p-1">Alterar</button>
+                                <button wire:click="destroy({{ $estacionamento->id }})"class="btn btn-outline-danger p-1">Deletar</button>
                             </td>
                          </tr>
                       @endforeach
