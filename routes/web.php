@@ -6,6 +6,9 @@ use App\Http\Controllers\TasksController;
 use App\Http\Controllers\MapaController;
 use App\Http\Livewire\CarroController;
 use App\Http\Livewire\EstacionamentoController;
+use App\Http\Livewire\GerenciaController;
+use App\Http\Livewire\SolicitarController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -32,4 +35,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('/mapa', MapaController::class);
     Route::get('/estacionamento', EstacionamentoController::class)->name('estacionamento');
     Route::get('/carro', CarroController::class)->name('carro');
+    Route::get('/gerenciar', GerenciaController::class)->name('gerencia');
+    Route::get('/solicitar', SolicitarController::class)->name('solicita');
 });

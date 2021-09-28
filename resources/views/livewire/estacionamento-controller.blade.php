@@ -7,7 +7,7 @@
                     <button id="abrirCriar" class="pr-3"><i class="bi bi-arrow-down"></i></button>
                     Cadastrar Estacionamentos
                 </div>
-                <div wire:ignore id="bodyCriar" class="card-body hidden">
+                <div wire:ignore id="bodyCriar" class="card-body">
                     <form method="post" wire:submit.prevent="criar">
                         <div class="row">
                             <div class="col-md-6 pb-2">
@@ -15,6 +15,15 @@
                                     <input type="text" class="form-control @error('fantasia') is-invalid @enderror" placeholder="fantasia" id="fantasia" name="fantasia" wire:model.defer="fantasia">
                                     <label for="fantasia">Fantasia</label>
                                     @error('fantasia') 
+                                        <div class="invalid-feedback">
+                                            {{$message}}
+                                        </div>
+                                    @enderror
+                                </div>
+                                <div class="form-floating pt-2">
+                                    <input type="text" class="form-control @error('qtd_vagas') is-invalid @enderror" placeholder="qtd_vagas" id="qtd_vagas" name="qtd_vagas" wire:model.defer="qtd_vagas">
+                                    <label for="qtd_vagas">Quantidade de Vagas</label>
+                                    @error('qtd_vagas') 
                                         <div class="invalid-feedback">
                                             {{$message}}
                                         </div>
@@ -80,6 +89,7 @@
                    <thead>
                       <tr>
                          <th scope="col">Fantasia</th>
+                         <th scope="col">Quantidade de Vagas</th>
                          <th scope="col">Latitude</th>
                          <th scope="col">Longitude</th>
                          <th scope="col"></th>
@@ -89,11 +99,21 @@
                       @foreach ($estacionamentos as $estacionamento)
                          <tr>
                             <td>{{$estacionamento->fantasia}} </td>
+                            <td>{{$estacionamento->qtd_vagas}} </td>
                             <td>{{$estacionamento->latitude}}</td>
                             <td>{{$estacionamento->longitude}}</td>
                             <td>
-                                <button wire:click="update({{ $estacionamento->id }})"class="btn btn-outline-primary p-1">Alterar</button>
-                                <button wire:click="destroy({{ $estacionamento->id }})"class="btn btn-outline-danger p-1">Deletar</button>
+                                <div class="row">
+                                    <div class="col">
+                                        <form action="../gerenciar">
+                                            <input type="hidden" name="id" id="id" value="{{$estacionamento->id}}">
+                                            <button class="btn btn-outline-primary p-1">Informações</button>
+                                        </form>
+                                    </div>
+                                    <div class="col">
+                                        <button wire:click="destroy({{ $estacionamento->id }})"class="btn btn-outline-danger p-1">Deletar</button>
+                                    </div>
+                                </div>
                             </td>
                          </tr>
                       @endforeach

@@ -5,9 +5,9 @@
             <div class="card">
                 <div class="card-header">
                     <button id="abrirCriar" class="pr-3"><i class="bi bi-arrow-down"></i></button>
-                        Cadastrar Carros
-                    </div>
-                <div wire:ignore id="bodyCriar" class="card-body hidden">
+                    Cadastrar Carros
+                </div>
+                <div class="card-body">
                     <form method="post" wire:submit.prevent="criar">
                         <div class="row">
                             <div class="col-md-4">

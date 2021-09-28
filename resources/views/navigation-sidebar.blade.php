@@ -7,16 +7,28 @@
             </a>
 
             <x-jet-nav-link href="{{ route('mapa.index') }}" :active="request()->routeIs('mapa.*')">
-            <i class="bi bi-map"></i>
+                <i class="bi bi-map"></i>
                 Mapa
             </x-jet-nav-link>
 
             @can('empresa_access')
+                <x-jet-nav-link href="{{ route('gerencia') }}" :active="request()->routeIs('gerencia')">
+                    <i class="bi bi-book"></i>                
+                    Gerenciar
+                </x-jet-nav-link>
+            @endcan
+        
+            @can('empresa_access')
                 <x-jet-nav-link href="{{ route('estacionamento') }}" :active="request()->routeIs('estacionamento')">
                     <i class="bi bi-building"></i>
-                    <div class="text-xs">
-                        Estacionamento
-                    </div>
+                    Criar
+                </x-jet-nav-link>
+            @endcan
+
+            @can('pessoa_access')
+                <x-jet-nav-link href="{{ route('solicita')}}" :active="request()->routeIs('solicita')">
+                    <i class="bi bi-truck"></i>
+                    Solicitar
                 </x-jet-nav-link>
             @endcan
 

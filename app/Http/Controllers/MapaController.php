@@ -9,32 +9,17 @@ use Mapper;
 
 class MapaController extends Controller
 {
-    private function mapaUsuarioContent($id,$fantasia){
+    private function mapaContent($id,$fantasia, $action, $button)
+    {
         return ['content' => '
             <div class="p-2 d-flex flex-column">
                 <div class="">
                     '.$fantasia.'
                 </div>
                 <div class="align-self-center">
-                    <form method="GET" action="../solicitar"><br>
+                    <form method="GET" action="'.$action.'"><br>
                         <input type="hidden" id="id" name="id" value="'.$id.'">
-                        <button "type="submit" class="btn btn-outline-success">Solicitar Vaga</button>
-                    </form>
-                </div>
-            </div>
-        '];
-    }
-
-    private function mapaEmpresaContent($id,$fantasia){
-        return ['content' => '
-            <div class="p-2 d-flex flex-column">
-                <div class="">
-                    '.$fantasia.'
-                </div>
-                <div class="align-self-center">
-                    <form method="GET" action="../estacionamento"><br>
-                        <input type="hidden" id="id" name="id" value="'.$id.'">
-                        <button "type="submit" class="btn btn-outline-success">Editar</button>
+                        <button "type="submit" class="btn btn-outline-success">'.$button.'</button>
                     </form>
                 </div>
             </div>
@@ -48,13 +33,12 @@ class MapaController extends Controller
         try{
             $user = User::find(auth()->user()->id);
             if($user->roles[0]->title === 'Empresa'){
-                //Retorna só os próprios estacionamentos para usuarios do tipo Empresa
                 foreach(Estacionamento::where('empresa_id','=', $user->userType->id)->get() as $estacionamento){
-                    Mapper::marker($estacionamento->latitude,$estacionamento->longitude, $this->mapaEmpresaContent($estacionamento->id, $estacionamento->fantasia)); 
+                    Mapper::marker($estacionamento->latitude,$estacionamento->longitude, $this->mapaContent($estacionamento->id, $estacionamento->fantasia, "../gerenciar", "Informações")); 
                 }
             }else if($user->roles[0]->title === 'Pessoa'){
                 foreach(Estacionamento::get() as $estacionamento){
-                    Mapper::marker($estacionamento->latitude,$estacionamento->longitude, $this->mapaUsuarioContent($estacionamento->id, $estacionamento->fantasia)); 
+                    Mapper::marker($estacionamento->latitude,$estacionamento->longitude, $this->mapaContent($estacionamento->id, $estacionamento->fantasia, "../solicitar", "Solicitar Vaga")); 
                 }
             }
         }catch(\Exception $e){

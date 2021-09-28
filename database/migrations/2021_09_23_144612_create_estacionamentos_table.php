@@ -15,10 +15,11 @@ class CreateEstacionamentosTable extends Migration
     {
         Schema::create('estacionamentos', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('empresa_id')->references('id')->on('empresas')->cascadeOnDelete();; 
+            $table->foreignId('empresa_id')->references('id')->on('empresas')->cascadeOnDelete();
             $table->string('fantasia');
             $table->string('latitude');
             $table->string('longitude');
+            $table->string('qtd_vagas'); 
             $table->timestamps();
         });
     }

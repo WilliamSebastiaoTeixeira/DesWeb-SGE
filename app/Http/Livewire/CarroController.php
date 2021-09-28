@@ -4,7 +4,6 @@ namespace App\Http\Livewire;
 
 use App\Models\Pessoa; 
 use App\Models\Carro; 
-use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Gate;
 use Symfony\Component\HttpFoundation\Response;
 use Livewire\Component;
