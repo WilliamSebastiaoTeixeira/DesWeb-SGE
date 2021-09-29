@@ -44,9 +44,11 @@ class GerenciaController extends Component
     }
 
     public function retirada($id){
+        abort_if(Gate::denies('empresa_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
         try{
             $vaga = Vaga::where('id','=',(int)$id)->get();
-            if($vaga[0]->estacionamento_id  != ((empresa::where('user_id','=' ,auth()->user()->id)->get())[0]->id)){
+            if((Estacionamento::where('id', '=', (int)$vaga[0]->estacionamento_id)->get())[0]->empresa->id != ((empresa::where('user_id','=' ,auth()->user()->id)->get())[0]->id)){
                 throw new \Exception("Erro não foi possível encontrar o usuário!!");
             }
             $vaga[0]->delete(); 
