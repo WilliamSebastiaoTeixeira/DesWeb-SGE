@@ -26,9 +26,9 @@
             @endcan
 
             @can('pessoa_access')
-                <x-jet-nav-link href="{{ route('solicita')}}" :active="request()->routeIs('solicita')">
+                <x-jet-nav-link href="{{ route('cadastra')}}" :active="request()->routeIs('cadastra')">
                     <i class="bi bi-truck"></i>
-                    Solicitar
+                    Cadastrar
                 </x-jet-nav-link>
             @endcan
 

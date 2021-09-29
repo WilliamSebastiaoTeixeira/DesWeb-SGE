@@ -29,11 +29,42 @@
                             <div class="row pt-2 d-flex align-items-center">
                                 <div class="col text-center">
                                     <button type="submit" class="btn btn-outline-secondary mb-2">
-                                        Solicitar
+                                        Cadastrar
                                     </button>
                                 </div>
                             </div>
                         </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col pt-2">
+                <div class="card">
+                    <div class="card-header">
+                        Seus Carros
+                    </div>
+                    <div class="card-body">
+                        <table class="table">
+                            <thead>
+                               <tr>
+                                  <th scope="col">CARRO</th>
+                                  <th scope="col">LOCAL</th>
+                                  <th scope="col"></th>
+                               </tr>
+                            </thead>
+                            <tbody>
+                               @foreach ($vagas as $vaga)
+                                  <tr>
+                                    <td>{{ $vaga['carro']['modelo']}}</td>
+                                    <td>{{$vaga['estacionamento']}}</td>
+                                    <td>
+                                        <button wire:click="retirada({{$vaga['id'].','.$vaga['carro']['id']}})"class="btn btn-outline-secondary">RETIRAR</button>
+                                    </td>
+                                  </tr>
+                               @endforeach
+                            </tbody>
+                         </table>
                     </div>
                 </div>
             </div>

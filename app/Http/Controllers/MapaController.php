@@ -38,7 +38,7 @@ class MapaController extends Controller
                 }
             }else if($user->roles[0]->title === 'Pessoa'){
                 foreach(Estacionamento::get() as $estacionamento){
-                    Mapper::marker($estacionamento->latitude,$estacionamento->longitude, $this->mapaContent($estacionamento->id, $estacionamento->fantasia, "../solicitar", "Solicitar Vaga")); 
+                    Mapper::marker($estacionamento->latitude,$estacionamento->longitude, $this->mapaContent($estacionamento->id, $estacionamento->fantasia, "../cadastrar", "Cadastrar Vaga")); 
                 }
             }
         }catch(\Exception $e){

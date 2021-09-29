@@ -13,7 +13,6 @@
                 <x-jet-section-border />
             @endif
 
-
             <div class="mt-10 sm:mt-0">
                 @can('pessoa_access')
                     @livewire('pessoa-controller')

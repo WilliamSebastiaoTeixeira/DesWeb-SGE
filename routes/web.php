@@ -36,5 +36,5 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/estacionamento', EstacionamentoController::class)->name('estacionamento');
     Route::get('/carro', CarroController::class)->name('carro');
     Route::get('/gerenciar', GerenciaController::class)->name('gerencia');
-    Route::get('/solicitar', SolicitarController::class)->name('solicita');
+    Route::get('/cadastrar', SolicitarController::class)->name('cadastra');
 });
