@@ -31,8 +31,6 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 })->name('dashboard');
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::resource('/tasks', TasksController::class);
-    Route::resource('/users', UsersController::class);
     Route::resource('/mapa', MapaController::class);
     Route::get('/estacionamento', EstacionamentoController::class)->name('estacionamento');
     Route::get('/carro', CarroController::class)->name('carro');
