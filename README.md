@@ -23,7 +23,7 @@
     - $php artisan key:generate
     - $php artisan migrate:fresh --seed
     - $npm install && npm run dev
-    - php artisan serve
+    - $php artisan serve
 
 ## Licença
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
