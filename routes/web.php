@@ -1,8 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UsersController;
-use App\Http\Controllers\TasksController; 
 use App\Http\Controllers\MapaController;
 use App\Http\Livewire\CarroController;
 use App\Http\Livewire\EstacionamentoController;
