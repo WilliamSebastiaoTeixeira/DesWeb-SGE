@@ -2,7 +2,7 @@
 
 > Projeto desenvolvido como requisito final para disiplina de Desenvolvimento WEB
 
->Authores: William S. Teixeira; Vicenzo Belettini Donadel
+>Autores: William S. Teixeira; Vicenzo Belettini Donadel
 
 ## Configuracões
     Copie o arquivo .env.example e cole no mesmo diretório como .env
