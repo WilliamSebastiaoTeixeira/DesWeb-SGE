@@ -1,6 +1,6 @@
 ## SGE - Estacimentos
 
-> Desenvolvido utilizando Laravel
+> Desenvolvido utilizando Laravel; 
 > Múltiplos Usuários; Múltiplos Roles; Google Maps API (Utilizindo Composer); MVC. 
 
 ## Configuracões
