@@ -1,8 +1,7 @@
-## SGE - Estacionamento
+## SGE - Estacimentos
 
-> Projeto desenvolvido como requisito final para disiplina de Desenvolvimento WEB
-
->Autores: William S. Teixeira; Vicenzo Belettini Donadel
+> Desenvolvido utilizando Laravel
+> Múltiplos Usuários; Múltiplos Roles; Google Maps API (Utilizindo Composer); MVC. 
 
 ## Configuracões
     Copie o arquivo .env.example e cole no mesmo diretório como .env
