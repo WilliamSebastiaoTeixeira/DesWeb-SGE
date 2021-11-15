@@ -1,6 +1,6 @@
 ## SGE - Estacimentos
 
-> Laravel; Múltiplos Usuários; Múltiplos Roles; Google Maps API (Utilizindo Composer); MVC. 
+> Laravel; Múltiplos Usuários; Múltiplos Roles; Google Maps API (Via Composer); MVC. 
 
 ## Configuracões
     Copie o arquivo .env.example e cole no mesmo diretório como .env
